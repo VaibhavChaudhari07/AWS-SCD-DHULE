@@ -27,7 +27,6 @@ function LogoLoopSection() {
         gap={52}
         fadeOut
         fadeOutColor="#ffffff"
-        pauseOnHover
         scaleOnHover
         ariaLabel="AWS and cloud technologies"
       />

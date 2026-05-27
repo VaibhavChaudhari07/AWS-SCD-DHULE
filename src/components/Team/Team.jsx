@@ -68,6 +68,7 @@ function Team() {
               sendToBackOnClick
               sensitivity={160}
               pauseOnHover
+              mobileClickOnly
               onTopCardChange={i => setActiveIndex(MEMBERS.length - 1 - i)}
             />
           </div>
