@@ -1,0 +1,315 @@
+.activities {
+  background: var(--deep-squall);
+  overflow: hidden;
+  border-top: 1px solid var(--squall-border);
+}
+
+.activities__circuit {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+}
+
+/* Central circuit SVG */
+.activities__track-svg {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 140px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+.activities__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.activities__track-path {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.activities__track-curb {
+  stroke-width: 3;
+  stroke-dasharray: 8 10;
+  transform: translateX(-6px);
+}
+
+.activities__track-curb--left {
+  stroke: var(--f1-red);
+  opacity: 0.7;
+}
+
+.activities__track-curb--right {
+  stroke: #fff;
+  opacity: 0.35;
+  transform: translateX(6px);
+}
+
+/* Start / finish */
+.activities__start-line,
+.activities__finish-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.activities__finish-line {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+}
+
+.activities__flag {
+  display: block;
+  width: 48px;
+  height: 28px;
+  border-radius: 2px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.activities__flag--checkered {
+  background:
+    conic-gradient(#111 90deg, #fff 90deg 180deg, #111 180deg 270deg, #fff 270deg) 0 0 / 12px 12px,
+    conic-gradient(#111 90deg, #fff 90deg 180deg, #111 180deg 270deg, #fff 270deg) 6px 6px / 12px 12px;
+}
+
+.activities__start-text {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Sector list along the track */
+.activities__sectors {
+  list-style: none;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.activities__sector {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.activities__sector--left .activities__card {
+  grid-column: 1;
+  justify-self: end;
+  text-align: right;
+}
+
+.activities__sector--left .activities__apex {
+  grid-column: 2;
+}
+
+.activities__sector--left .activities__sector-tag,
+.activities__sector--left .activities__timing {
+  justify-content: flex-end;
+}
+
+.activities__sector--right .activities__card {
+  grid-column: 3;
+  justify-self: start;
+  text-align: left;
+}
+
+.activities__sector--right .activities__apex {
+  grid-column: 2;
+}
+
+.activities__apex {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--f1-charcoal);
+  border: 3px solid var(--f1-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 0 4px rgba(225, 6, 0, 0.2),
+    0 0 24px rgba(225, 6, 0, 0.35);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.activities__sector--finish .activities__apex,
+.activities__sector--start .activities__apex {
+  border-color: var(--f1-white);
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.15),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.activities__sector--caution .activities__apex {
+  border-color: #f5c518;
+  box-shadow: 0 0 0 4px rgba(245, 197, 24, 0.2), 0 0 20px rgba(245, 197, 24, 0.25);
+}
+
+.activities__sector--pit .activities__apex {
+  border-color: var(--text-muted);
+}
+
+.activities__lap {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--f1-white);
+  letter-spacing: 0.05em;
+}
+
+/* Timing tower card */
+.activities__card {
+  max-width: min(340px, 42vw);
+  padding: 1.15rem 1.35rem;
+  background: linear-gradient(145deg, var(--f1-elevated) 0%, var(--f1-card) 100%);
+  border: 1px solid var(--squall-border);
+  border-left: 4px solid var(--f1-red);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--transition-smooth),
+    box-shadow var(--transition-smooth),
+    border-color var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.activities__sector--right .activities__card {
+  border-left: 1px solid var(--squall-border);
+  border-right: 4px solid var(--f1-red);
+}
+
+.activities__sector--caution .activities__card {
+  border-left-color: #f5c518;
+}
+
+.activities__sector--right.activities__sector--caution .activities__card {
+  border-right-color: #f5c518;
+  border-left-color: var(--squall-border);
+}
+
+.activities__sector--finish .activities__card,
+.activities__sector--start .activities__card {
+  border-left-color: var(--f1-white);
+}
+
+.activities__sector--right.activities__sector--finish .activities__card,
+.activities__sector--right.activities__sector--start .activities__card {
+  border-right-color: var(--f1-white);
+}
+
+.activities__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent 40%, rgba(225, 6, 0, 0.06) 100%);
+  pointer-events: none;
+}
+
+/* Fix jarring skew on hover */
+.activities__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--squall-border-hover);
+}
+
+.activities__timing {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.activities__sector--left .activities__timing {
+  flex-direction: row-reverse;
+}
+
+.activities__time-start,
+.activities__time-end {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--f1-red-light);
+}
+
+.activities__time-sep {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.activities__sector-tag {
+  display: inline-flex;
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.activities__card-title {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: var(--f1-white);
+}
+
+@media (max-width: 720px) {
+  .activities__track-svg {
+    display: none;
+  }
+
+  .activities__sector {
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+  }
+
+  .activities__sector--left .activities__card,
+  .activities__sector--right .activities__card {
+    grid-column: 2;
+    justify-self: stretch;
+    text-align: left;
+    max-width: none;
+    border-left: 4px solid var(--f1-red);
+    border-right: 1px solid var(--squall-border);
+  }
+
+  .activities__sector--left .activities__apex,
+  .activities__sector--right .activities__apex {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .activities__sector--left .activities__timing,
+  .activities__sector--left .activities__sector-tag {
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+}

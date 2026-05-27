@@ -1,0 +1,46 @@
+.logo-loop-section {
+  background: #ffffff;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 1rem 0;
+  overflow: hidden;
+}
+
+.logo-loop-mark {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.logo-loop-mark--accent {
+  color: var(--f1-red-light);
+  opacity: 1;
+}
+
+.logo-loop-section .logoloop--scale-hover .logoloop__item:hover .logo-loop-mark {
+  color: var(--f1-white);
+}
+
+.logo-loop-section .logoloop--scale-hover .logoloop__item:hover .logo-loop-mark--accent {
+  color: var(--f1-red-light);
+}
+
+.logo-loop-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.logo-loop-img--large {
+  height: 44px;
+}
+
+.logo-loop-img:hover {
+  opacity: 1;
+}

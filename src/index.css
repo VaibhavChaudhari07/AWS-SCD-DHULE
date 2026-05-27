@@ -1,0 +1,427 @@
+/* ==========================================================================
+   AWS Student Community Day — F1 Technical Event Theme
+   Palette: Racing Red #E10600 · White · Charcoal · Light Gray
+   ========================================================================== */
+
+:root {
+  /* F1 racing palette */
+  --f1-red: #e10600;
+  --f1-red-dark: #b80500;
+  --f1-red-light: #ff2a1a;
+  --f1-white: #ffffff;
+  --f1-charcoal: #0c0c0e;
+  --f1-dark: #141416;
+  --f1-elevated: #1c1c1f;
+  --f1-card: #222226;
+  --f1-light-bg: #f4f4f5;
+  --f1-light-text: #1a1a1a;
+  --f1-gray: #8a8a8e;
+  --f1-gray-muted: #5c5c62;
+
+  /* Aliases (used across components) */
+  --aws-orange: var(--f1-red);
+  --aws-orange-light: var(--f1-red-light);
+  --aws-orange-hover: #ff4433;
+  --aws-orange-glow: rgba(225, 6, 0, 0.5);
+  --aws-orange-subtle: rgba(225, 6, 0, 0.14);
+  --deep-squall: var(--f1-dark);
+  --squall-black: var(--f1-charcoal);
+  --squall-elevated: var(--f1-elevated);
+  --squall-card: var(--f1-card);
+  --squall-border: rgba(255, 255, 255, 0.1);
+  --squall-border-hover: rgba(225, 6, 0, 0.55);
+  --text-primary: var(--f1-white);
+  --text-secondary: #b8b8bc;
+  --text-muted: var(--f1-gray);
+  --accent-blue: #8a8a8e;
+
+  /* Gradients & surfaces */
+  --gradient-hero:
+    radial-gradient(ellipse 100% 70% at 80% 0%, rgba(225, 6, 0, 0.18) 0%, transparent 55%),
+    linear-gradient(180deg, #0a0a0c 0%, #121214 50%, #18181b 100%);
+  --gradient-orange: linear-gradient(135deg, var(--f1-red-light) 0%, var(--f1-red) 50%, var(--f1-red-dark) 100%);
+  --gradient-orange-shine: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 65%
+  );
+  --gradient-card: linear-gradient(145deg, rgba(225, 6, 0, 0.08) 0%, transparent 55%);
+  --gradient-text: linear-gradient(135deg, #fff 0%, #fff 40%, var(--f1-red-light) 100%);
+
+  /* Layout */
+  --nav-height: 64px;
+  --section-padding: clamp(5rem, 10vw, 8rem);
+  --container-max: 1240px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  --skew-racing: -12deg;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 50px rgba(225, 6, 0, 0.25);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --shadow-card-hover: 0 20px 48px rgba(0, 0, 0, 0.45), 0 0 36px rgba(225, 6, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  /* Motion */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Oswald', 'Plus Jakarta Sans', system-ui, sans-serif;
+  background-color: var(--squall-black);
+  color: var(--text-primary);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.dg-scroll-lock {
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+::selection {
+  background: rgba(225, 6, 0, 0.4);
+  color: var(--f1-white);
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.page-ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.page-ambient__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+}
+
+.page-ambient__orb--1 {
+  width: 500px;
+  height: 500px;
+  background: rgba(225, 6, 0, 0.07);
+  top: -15%;
+  right: -10%;
+}
+
+.page-ambient__orb--2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.02);
+  bottom: 20%;
+  left: -15%;
+}
+
+.container {
+  width: min(100% - 2.5rem, var(--container-max));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-padding);
+  z-index: 1;
+}
+
+.section--alt {
+  background: var(--deep-squall);
+}
+
+/* F1-style light content band (like featured articles) */
+.section--light {
+  background: var(--f1-light-bg);
+  color: var(--f1-light-text);
+}
+
+.section--light .section-label {
+  color: var(--f1-red);
+  background: rgba(225, 6, 0, 0.08);
+  border-color: rgba(225, 6, 0, 0.25);
+}
+
+.section--light .section-label::before {
+  background: var(--f1-red);
+  box-shadow: 0 0 10px rgba(225, 6, 0, 0.5);
+}
+
+.section--light .section-title {
+  color: var(--f1-light-text);
+  background: none;
+  -webkit-text-fill-color: var(--f1-light-text);
+}
+
+.section--light .section-subtitle {
+  color: var(--f1-gray-muted);
+}
+
+.section--light .glass-card {
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  color: var(--f1-light-text);
+}
+
+.section--light .glass-card:hover {
+  border-color: rgba(225, 6, 0, 0.35);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--f1-red-light);
+  margin-bottom: 1rem;
+  padding: 0.45rem 1rem;
+  background: var(--aws-orange-subtle);
+  border-left: 3px solid var(--f1-red);
+  border-radius: 0;
+}
+
+.section-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--f1-red);
+  box-shadow: 0 0 10px var(--aws-orange-glow);
+}
+
+.section-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--f1-white);
+}
+
+.section-subtitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  max-width: 580px;
+  margin-inline: auto;
+  line-height: 1.75;
+}
+
+.glass-card {
+  background: linear-gradient(145deg, rgba(34, 34, 38, 0.95) 0%, rgba(20, 20, 22, 0.85) 100%);
+  border: 1px solid var(--squall-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth),
+    border-color var(--transition-smooth);
+}
+
+.glass-card:hover {
+  border-color: var(--squall-border-hover);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+/* F1 slanted racing buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 0;
+  transition: transform var(--transition-fast), box-shadow var(--transition-smooth),
+    background var(--transition-fast), filter var(--transition-fast);
+}
+
+.btn:active {
+  transform: scale(0.98) skewX(var(--skew-racing));
+}
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: var(--f1-red);
+  color: var(--f1-white);
+  transform: skewX(var(--skew-racing));
+  border-left: 3px solid var(--f1-white);
+  box-shadow: 0 4px 24px var(--aws-orange-glow);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-orange-shine);
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  background: var(--f1-red-light);
+  box-shadow: 0 8px 36px var(--aws-orange-glow);
+  filter: brightness(1.05);
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--f1-white);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  transform: skewX(var(--skew-racing));
+}
+
+.btn-outline:hover {
+  border-color: var(--f1-white);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--f1-white);
+}
+
+.btn-lg {
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--f1-red);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Scroll entrance animations
+   ========================================================================== */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease both;
+}
+
+/* Stagger helpers */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* Intersection-observer driven — add .is-visible via JS or use CSS @starting-style */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Section separator — thin red gradient rule */
+.section-sep {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--f1-red) 30%, var(--f1-red-light) 50%, var(--f1-red) 70%, transparent);
+  opacity: 0.35;
+}

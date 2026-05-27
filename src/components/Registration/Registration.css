@@ -1,0 +1,124 @@
+.registration {
+  padding-block: 0;
+  background: var(--f1-charcoal);
+}
+
+.registration__inner {
+  position: relative;
+  overflow: hidden;
+  background: var(--f1-dark);
+  border-top: 4px solid var(--f1-red);
+  border-bottom: 4px solid var(--f1-red);
+  padding: clamp(5rem, 10vw, 8rem) 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Racing diagonal stripes in background */
+.registration__stripes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.registration__stripe {
+  position: absolute;
+  top: -20%;
+  width: 180px;
+  height: 200%;
+  background: var(--f1-red);
+  opacity: 0.06;
+  transform: skewX(-12deg);
+}
+
+.registration__stripe--1 { left: 8%; }
+.registration__stripe--2 { left: 14%; width: 80px; opacity: 0.04; }
+.registration__stripe--3 { right: 8%; }
+
+/* Glow blob */
+.registration__inner::after {
+  content: '';
+  position: absolute;
+  width: 800px;
+  height: 400px;
+  background: var(--f1-red);
+  filter: blur(160px);
+  opacity: 0.07;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.registration__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 780px;
+}
+
+.registration__content .section-label {
+  margin-bottom: 1.5rem;
+}
+
+.registration__title {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--f1-white);
+  margin-bottom: 1.5rem;
+}
+
+.registration__title em {
+  font-style: normal;
+  color: var(--f1-red-light);
+}
+
+.registration__sub {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+}
+
+.registration__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.registration__urgency {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.registration__urgency strong {
+  color: var(--f1-red-light);
+}
+
+@media (max-width: 640px) {
+  .registration__inner {
+    padding: 3rem 1.25rem;
+  }
+
+  .registration__title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  .registration__stripe--1,
+  .registration__stripe--3 {
+    display: none;
+  }
+}
