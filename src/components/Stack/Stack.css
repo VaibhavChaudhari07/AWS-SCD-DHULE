@@ -42,3 +42,20 @@
   object-fit: cover;
   pointer-events: none;
 }
+
+/* Smoother mobile tap feedback */
+@media (max-width: 768px) {
+  .card-rotate-disabled {
+    transition: transform 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .card-rotate-disabled:active {
+    transform: scale(0.97);
+  }
+
+  .card {
+    border-radius: 1.25rem;
+    will-change: transform;
+  }
+}
