@@ -69,6 +69,9 @@ function Team() {
               sensitivity={160}
               pauseOnHover
               mobileClickOnly
+              autoplay
+              autoplayDelay={2500}
+              animationConfig={{ stiffness: 180, damping: 22 }}
               onTopCardChange={i => setActiveIndex(MEMBERS.length - 1 - i)}
             />
           </div>

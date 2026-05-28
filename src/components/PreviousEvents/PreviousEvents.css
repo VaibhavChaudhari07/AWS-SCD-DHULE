@@ -137,6 +137,14 @@
 }
 
 @media (max-width: 768px) {
+  .previous-events,
+  .previous-events__dome {
+    min-height: 600px;
+    height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
   .previous-events__hint {
     display: none;
   }
