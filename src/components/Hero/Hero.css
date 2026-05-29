@@ -16,6 +16,22 @@
   z-index: 0;
 }
 
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero__video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
 .hero__aurora {
   position: absolute;
   inset: -50%;
@@ -28,6 +44,7 @@
     transparent 280deg
   );
   animation: aurora-spin 30s linear infinite;
+  z-index: 2;
 }
 
 @keyframes aurora-spin {
@@ -253,4 +270,28 @@
   .hero__car-wrap {
     transition: none;
   }
+}
+
+/* Mute toggle button */
+.hero__mute-btn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--f1-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.hero__mute-btn:hover {
+  background: rgba(225, 6, 0, 0.5);
+  border-color: var(--f1-red);
 }

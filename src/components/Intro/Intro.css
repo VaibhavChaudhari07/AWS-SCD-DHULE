@@ -1,0 +1,206 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #0a0a0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Grid background */
+.intro__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+}
+
+/* Red sweep bars */
+.intro__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #e10600 30%, #ff2a1a 50%, #e10600 70%, transparent);
+  transform-origin: left center;
+  transform: scaleX(0);
+  box-shadow: 0 0 20px rgba(225, 6, 0, 0.8);
+}
+
+.intro__bar--top { top: 0; }
+.intro__bar--bottom { bottom: 0; }
+
+/* Content */
+.intro__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Logo */
+.intro__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.intro__logo-aws {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #e10600;
+  text-shadow: 0 0 60px rgba(225, 6, 0, 0.5);
+  line-height: 1;
+}
+
+.intro__logo-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(0.75rem, 2.5vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Button */
+.intro__btn {
+  position: relative;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #e10600;
+  border: none;
+  padding: 1rem 3rem;
+  transform: skewX(-12deg);
+  border-left: 4px solid #fff;
+  box-shadow: 0 4px 32px rgba(225, 6, 0, 0.5);
+  min-width: 220px;
+  transition: box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.intro__btn-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transform: skewX(12deg);
+}
+
+.intro__btn--revving {
+  animation: btn-shake 0.1s infinite;
+  box-shadow: 0 0 60px rgba(225, 6, 0, 0.9);
+}
+
+.intro__btn--launching {
+  box-shadow: 0 0 80px rgba(225, 6, 0, 1);
+}
+
+@keyframes btn-shake {
+  0%, 100% { transform: skewX(-12deg) translateX(0); }
+  25% { transform: skewX(-12deg) translateX(-2px); }
+  75% { transform: skewX(-12deg) translateX(2px); }
+}
+
+.intro__btn-revving {
+  letter-spacing: 0.2em;
+  animation: text-pulse 0.3s infinite alternate;
+}
+
+@keyframes text-pulse {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+.intro__btn-go {
+  letter-spacing: 0.25em;
+  font-size: 1.1rem;
+}
+
+/* Hint */
+.intro__hint {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin: 0;
+}
+
+/* Racing lights */
+.intro__lights {
+  position: absolute;
+  bottom: 3rem;
+  display: flex;
+  gap: 1rem;
+  z-index: 2;
+}
+
+.intro__light {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #222;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+/* ── Intro screen wrapper ── */
+.intro__screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* ── Video phase ── */
+.intro__video-wrap {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intro__skip {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.5rem 1.25rem;
+  backdrop-filter: blur(8px);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.intro__skip:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.5);
+}
