@@ -130,10 +130,16 @@ export default function Stack({
       const index = newStack.findIndex(card => card.id === id);
       const [card] = newStack.splice(index, 1);
       newStack.unshift(card);
-      onTopCardChange?.(newStack[newStack.length - 1].id - 1);
       return newStack;
     });
   };
+
+  // Notify parent after stack state has settled
+  useEffect(() => {
+    if (stack.length > 0) {
+      onTopCardChange?.(stack[stack.length - 1].id - 1);
+    }
+  }, [stack]);
 
   useEffect(() => {
     if (autoplay && stack.length > 1 && !isPaused) {
