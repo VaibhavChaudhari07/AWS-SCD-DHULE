@@ -57,7 +57,7 @@ function Hero() {
         <video
           ref={videoRef}
           className="hero__video"
-          src="/herobg/herobg.mp4"
+          src="/herobg/Herobg.webm"
           autoPlay
           muted
           loop
