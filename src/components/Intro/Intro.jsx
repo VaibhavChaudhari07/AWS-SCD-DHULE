@@ -116,7 +116,7 @@ export default function Intro({ onEnter }) {
               <video
                 ref={videoRef}
                 className="intro__video"
-                src="/herobg/intro.mp4"
+                src="/herobg/Intro.webm"
                 playsInline
                 onEnded={handleVideoEnd}
               />
